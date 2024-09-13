@@ -1,0 +1,48 @@
+services:
+  transmission:
+    image: pasinduljay/transmission:1.1
+    container_name: transmission
+    environment:
+      - PUID=1000 # Change as per your user ID
+      - PGID=1000 # Change as per your group ID
+      - TZ=Etc/UTC
+      - TRANSMISSION_WEB_UI=transmission-web-control # Optional: Use a different UI
+    volumes:
+      - /home/ubuntu/volume/shared:/downloads # Shared directory
+      - /home/ubuntu/volume/transmission/config:/config
+    networks:
+      - proxy
+    restart: unless-stopped
+
+  filebrowser:
+    image: pasinduljay/filebrowser:1.1
+    container_name: filebrowser
+    environment:
+      - PUID=1000 # Change as per your user ID
+      - PGID=1000 # Change as per your group ID
+      - TZ=Etc/UTC
+    volumes:
+      - /home/ubuntu/volume/shared:/srv # Same shared directory
+    networks:
+      - proxy
+    restart: unless-stopped
+
+  nginx-proxy-manager:
+    image: pasinduljay/nginx-proxy-manager:1.1
+    container_name: nginx-proxy-manager
+    environment:
+      DB_SQLITE_FILE: "/data/database.sqlite"
+    volumes:
+      - /home/ubuntu/volume/nginx/data:/data
+      - /home/ubuntu/volume/nginx/letsencrypt:/etc/letsencrypt
+    ports:
+      - '80:80'   # HTTP
+      - '443:443' # HTTPS
+      - '81:81'   # Management Interface
+    networks:
+      - proxy
+    restart: unless-stopped
+
+networks:
+  proxy:
+    driver: bridge
