@@ -9,7 +9,7 @@ services:
       - TRANSMISSION_WEB_UI=transmission-web-control # Optional: Use a different UI
     volumes:
       - /home/ubuntu/volume/shared:/downloads # Shared directory
-      - /home/ubuntu/volume/transmission/config:/config
+      - /home/ubuntu/volume/config/transmission/config:/config
     networks:
       - proxy
     restart: unless-stopped
@@ -33,8 +33,8 @@ services:
     environment:
       DB_SQLITE_FILE: "/data/database.sqlite"
     volumes:
-      - /home/ubuntu/volume/nginx/data:/data
-      - /home/ubuntu/volume/nginx/letsencrypt:/etc/letsencrypt
+      - /home/ubuntu/volume/config/nginx/data:/data
+      - /home/ubuntu/volume/config/nginx/letsencrypt:/etc/letsencrypt
     ports:
       - '80:80'   # HTTP
       - '443:443' # HTTPS
