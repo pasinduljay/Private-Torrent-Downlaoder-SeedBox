@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      INSTANCE_IP: "52.237.233.217"
+      INSTANCE_IP: "13.238.117.57"
       USERNAME: "ubuntu"
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       GITHUB_USERNAME: ${{ secrets.GHUB_USERNAME }}
