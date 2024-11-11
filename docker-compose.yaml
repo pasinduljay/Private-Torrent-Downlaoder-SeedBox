@@ -8,8 +8,8 @@ services:
       - TZ=Etc/UTC
       - TRANSMISSION_WEB_UI=transmission-web-control # Optional: Use a different UI
     volumes:
-      - /home/ubuntu/volume/shared:/downloads # Shared directory
-      - /home/ubuntu/volume/config/transmission/config:/config
+      - /home/azureuser/volume/shared:/downloads # Shared directory
+      - /home/azureuser/volume/config/transmission/config:/config
     networks:
       - proxy
     restart: unless-stopped
@@ -22,7 +22,7 @@ services:
       - PGID=1000 # Change as per your group ID
       - TZ=Etc/UTC
     volumes:
-      - /home/ubuntu/volume/shared:/srv # Same shared directory
+      - /home/azureuser/volume/shared:/srv # Same shared directory
     networks:
       - proxy
     restart: unless-stopped
@@ -33,8 +33,8 @@ services:
     environment:
       DB_SQLITE_FILE: "/data/database.sqlite"
     volumes:
-      - /home/ubuntu/volume/config/nginx/data:/data
-      - /home/ubuntu/volume/config/nginx/letsencrypt:/etc/letsencrypt
+      - /home/azureuser/volume/config/nginx/data:/data
+      - /home/azureuser/volume/config/nginx/letsencrypt:/etc/letsencrypt
     ports:
       - '80:80'   # HTTP
       - '443:443' # HTTPS

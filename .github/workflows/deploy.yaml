@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      INSTANCE_IP: "3.25.86.65"
-      USERNAME: "ubuntu"
+      INSTANCE_IP: "52.175.254.110"
+      USERNAME: "azureuser"
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       GITHUB_USERNAME: ${{ secrets.GHUB_USERNAME }}
       GITHUB_TOKEN: ${{ secrets.TOKEN }}
@@ -28,7 +28,7 @@ jobs:
         username: ${{ env.USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          mkdir -p /home/ubuntu/TorDownload && cd /home/ubuntu/TorDownload
+          mkdir -p /home/azureuser/TorDownload && cd /home/azureuser/TorDownload
           sudo rm -rf Private-Torrent-Downlaoder-using-FileBrowser
           git clone https://${{ env.GITHUB_USERNAME }}:${{ env.GITHUB_TOKEN }}@github.com/pasinduljay/Private-Torrent-Downlaoder-using-FileBrowser.git
           cd Private-Torrent-Downlaoder-using-FileBrowser
